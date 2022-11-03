@@ -1,6 +1,6 @@
 <?php
 
-$api_url="http://localhost/Employe_project/App/api/test_api.php?action=fetch_all";
+$api_url="http://localhost/rest_api_project/App/api/test_api.php?action=fetch_all";
 
 $client = curl_init($api_url);
 curl_setopt($client,CURLOPT_RETURNTRANSFER,true);
@@ -29,8 +29,8 @@ if(count($result)>0)
                     $row->poste
                     </td>
                     <td>
-                    <button type=\"button\" class=\"btn btn-warning\" id=\"$row->id\">Edit</button>
-                    <button type=\"button\" class=\"btn btn-danger\" id=\"$row->id\">Delete</button>
+                    <button type=\"button\" class=\"btn btn-warning edit\" id=\"$row->id\">Edit</button>
+                    <button type=\"button\" class=\"btn btn-danger delete\" id=\"$row->id\">Delete</button>
                     </td>
                 </tr>
                ";

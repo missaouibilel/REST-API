@@ -85,7 +85,11 @@ $(document).ready(function(){
         })
     }
     $("#add_button").click(function(){
+        $('#action').val('insert');
+        $('#button_action').val('Insert');
+        $('.modal-title').text("Insert data");
         $("#apicrudmodal").modal('show');
+
     })
     $("#api_crud_form").on('submit',function(event){
         event.preventDefault();
@@ -108,7 +112,7 @@ $(document).ready(function(){
                 success:function(data){
                     fetch_data();
                     $("#api_crud_form")[0].reset();
-                    $("#apicrudmodal").modal("hide");
+                    $("#apicrudmodal").modal('hide');
                     if(data == "insert")
                     {
                         alert ("Data inserted with succesfully");
@@ -120,6 +124,45 @@ $(document).ready(function(){
                 }
             })
         }
+    })
+    $(document).on('click','.edit',function(){
+        var id = $(this).attr('id');
+        var action = "fetch_single";
+        $.ajax({
+            url:"action.php",
+            method:"POST",
+            data:{id:id,action:action},
+            dataType:"json",
+            success:function(data)
+            {
+                $('#hidden_id').val(id);
+                $('#name').val(data.name);
+                $('#email').val(data.email);
+                $('#poste').val(data.poste);
+                $('#action').val('update');
+                $('#button_action').val('Update');
+                $('.modal-title').text('Update data');
+                $('#apicrudmodal').modal('show');
+            }
+        })
+    })
+    $(document).on('click','.delete',function(){
+            var id = $(this).attr('id');
+            var action = "delete";
+            if(confirm("Are you sure you want to delete user!!"))
+            {
+                 $.ajax({
+                url : "action.php",
+                method : "POST",
+                data:{id:id,action:action},
+                success:function(data){
+                    fetch_data();
+                    alert("user deleted with succesfully");
+                }
+
+            })
+            }
+           
     })
 })
 </script>
