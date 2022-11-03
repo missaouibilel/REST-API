@@ -146,5 +146,23 @@ $(document).ready(function(){
             }
         })
     })
+    $(document).on('click','.delete',function(){
+            var id = $(this).attr('id');
+            var action = "delete";
+            if(confirm("Are you sure you want to delete user!!"))
+            {
+                 $.ajax({
+                url : "action.php",
+                method : "POST",
+                data:{id:id,action:action},
+                success:function(data){
+                    fetch_data();
+                    alert("user deleted with succesfully");
+                }
+
+            })
+            }
+           
+    })
 })
 </script>

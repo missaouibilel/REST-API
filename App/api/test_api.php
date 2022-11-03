@@ -20,4 +20,8 @@ if($_GET["action"]=="fetch_all"){
  {
     $data = $api_object->update();
  }
+ if($_GET['action']== "delete")
+ {
+    $data = $api_object->delete($_GET['id']);
+ }
 echo json_encode($data);

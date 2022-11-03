@@ -65,4 +65,13 @@ if(isset($_POST['action']))
         }
    
     }
+    if($_POST['action']=='delete')
+    {
+        $id = $_POST['id'];
+        $api_url = "http://localhost/rest_api_project/App/api/test_api.php?action=delete&id=$id";
+        $client = curl_init($api_url);
+        curl_setopt($client,CURLOPT_RETURNTRANSFER,true);
+        $response = curl_exec($client);
+        echo $response;
+    }
 }

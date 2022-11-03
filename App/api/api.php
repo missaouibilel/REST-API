@@ -114,4 +114,20 @@ class API{
         }
         return $data;
     }
+    // delete function
+  public function delete($id)
+  {
+        $query = "DELETE FROM usres WHERE id=$id";
+        $statement = $this->connect->prepare($query);
+        if($statement->execute())
+        {
+            $data[] = array(
+                "success"   =>  '1'
+            );
+        }else{
+            $data[] = array(
+                "success"   =>  '0'
+            );
+        }
+  }
 }
