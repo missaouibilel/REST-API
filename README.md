@@ -1,2 +1,2 @@
 # REST-API
-this my first REST API project using php,mysql and Jquery
+this is my first REST API project using PHP,Mysql and Jquery
