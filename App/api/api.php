@@ -65,4 +65,53 @@ class API{
         }
         return $data;
     }
+    //fetch user single
+    public function fetch_single($id)
+    {
+        $query = "SELECT * FROM usres WHERE id=$id ";
+        $statement = $this->connect->prepare($query);
+        if($statement->execute())
+        {
+           foreach($statement->fetchAll() as $row)
+           {
+                $data['name'] = $row['name'];
+                $data['email'] = $row['email'];
+                $data['poste'] = $row['poste'];
+           }
+           return $data;
+        }
+
+    }
+    // update user function
+    public function update()
+    {
+        if(isset($_POST['name']))
+        {
+            $form_data = array(
+                ':name'     =>$_POST['name'],
+                ':email'    =>$_POST['email'],
+                ':poste'    => $_POST['poste'],
+                ':id'       => $_POST['id']
+            );
+            $query = "UPDATE usres SET name= :name,email=:email,poste=:poste WHERE id=:id";
+            $statement = $this->connect->prepare($query);
+            if($statement->execute($form_data))
+            {
+                $data[] = array(
+                    'success'   =>  '1'
+
+                );
+            }else{
+                $data[] = array(
+                    'success'   =>  '0'
+                );
+            }
+        }else
+        {
+            $data[]= array(
+                'success'   =>  '0'
+            );
+        }
+        return $data;
+    }
 }
